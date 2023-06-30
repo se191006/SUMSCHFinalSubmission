@@ -150,7 +150,8 @@ Please note that you need to have a properly deployed smart contract at the spec
 
 This README provides an overview of a ReactJS code snippet that interacts with a smart contract using the Web3 library. It explains the setup, contract interaction component, functions, and user interface. Follow the provided instructions to use this code in your project and adapt it to your specific requirements.
 
-Further details can be found at https://fhstp-my.sharepoint.com/:f:/g/personal/se191006_fhstp_ac_at/EjkyddJ5UItCkg6Gp_o-hjUBaJ2s-XzJbLstOwoZ5QM4gQ?e=8AgSzZ
+Further details can be found in the SmartContract OneDrive Folder at https://fhstp-my.sharepoint.com/:f:/g/personal/se191006_fhstp_ac_at/EjkyddJ5UItCkg6Gp_o-hjUBaJ2s-XzJbLstOwoZ5QM4gQ?e=8AgSzZ
+Here you can find a short explanation video: https://youtu.be/3C3r2UszCXw
 
 <!-- # Web3 - Infura example
 
