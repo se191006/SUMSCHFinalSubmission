@@ -227,7 +227,7 @@ const contractABI = [
   },
 ];
 
-const contractAddress = "0x945c4B62F920E06cd2921E294c430597dF7128E8"; // Replace with your contract address
+const contractAddress = "0xC86C622C57c40c866D40D07B16109B459Cd72b05"; // Replace with your contract address
 
 export default function ContractInteraction(props) {
   const [web3, setWeb3] = useState(null);
@@ -357,7 +357,8 @@ export default function ContractInteraction(props) {
             </button>
             <button
               className="button count-button"
-              onClick={() => simulateConsumption(index)}>
+              onClick={() => simulateConsumption(index)}
+            >
               {counts[index]}
             </button>
             <button className="button" onClick={() => handleIncrement(index)}>
@@ -393,7 +394,8 @@ export default function ContractInteraction(props) {
                 </h2>
                 <button
                   style={{ width: 300, cursor: "default" }}
-                  className="button">
+                  className="button"
+                >
                   {index === 4
                     ? certifiedProducts?.reduce((accumulator, currentValue) => {
                         return accumulator + parseInt(currentValue);
