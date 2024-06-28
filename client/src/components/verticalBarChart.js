@@ -12,7 +12,7 @@ const App = (props) => {
 
   return (
     <BarChart width={700} height={400} data={data}>
-      <Bar dataKey="qty" fill="#4caf4f" />
+      <Bar dataKey="qty" fill="#0d54a2" />
       <CartesianGrid stroke="#ccc" />
       <XAxis dataKey="name" />
       <YAxis />

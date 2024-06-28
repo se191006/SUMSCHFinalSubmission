@@ -227,16 +227,354 @@ const contractABI = [
   },
 ];
 
+const contractABINFT = [
+  {
+    inputs: [
+      { internalType: "address", name: "initialOwner", type: "address" },
+    ],
+    stateMutability: "nonpayable",
+    type: "constructor",
+  },
+  { inputs: [], name: "ERC721EnumerableForbiddenBatchMint", type: "error" },
+  {
+    inputs: [
+      { internalType: "address", name: "sender", type: "address" },
+      { internalType: "uint256", name: "tokenId", type: "uint256" },
+      { internalType: "address", name: "owner", type: "address" },
+    ],
+    name: "ERC721IncorrectOwner",
+    type: "error",
+  },
+  {
+    inputs: [
+      { internalType: "address", name: "operator", type: "address" },
+      { internalType: "uint256", name: "tokenId", type: "uint256" },
+    ],
+    name: "ERC721InsufficientApproval",
+    type: "error",
+  },
+  {
+    inputs: [{ internalType: "address", name: "approver", type: "address" }],
+    name: "ERC721InvalidApprover",
+    type: "error",
+  },
+  {
+    inputs: [{ internalType: "address", name: "operator", type: "address" }],
+    name: "ERC721InvalidOperator",
+    type: "error",
+  },
+  {
+    inputs: [{ internalType: "address", name: "owner", type: "address" }],
+    name: "ERC721InvalidOwner",
+    type: "error",
+  },
+  {
+    inputs: [{ internalType: "address", name: "receiver", type: "address" }],
+    name: "ERC721InvalidReceiver",
+    type: "error",
+  },
+  {
+    inputs: [{ internalType: "address", name: "sender", type: "address" }],
+    name: "ERC721InvalidSender",
+    type: "error",
+  },
+  {
+    inputs: [{ internalType: "uint256", name: "tokenId", type: "uint256" }],
+    name: "ERC721NonexistentToken",
+    type: "error",
+  },
+  {
+    inputs: [
+      { internalType: "address", name: "owner", type: "address" },
+      { internalType: "uint256", name: "index", type: "uint256" },
+    ],
+    name: "ERC721OutOfBoundsIndex",
+    type: "error",
+  },
+  {
+    inputs: [{ internalType: "address", name: "owner", type: "address" }],
+    name: "OwnableInvalidOwner",
+    type: "error",
+  },
+  {
+    inputs: [{ internalType: "address", name: "account", type: "address" }],
+    name: "OwnableUnauthorizedAccount",
+    type: "error",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: "address",
+        name: "owner",
+        type: "address",
+      },
+      {
+        indexed: true,
+        internalType: "address",
+        name: "approved",
+        type: "address",
+      },
+      {
+        indexed: true,
+        internalType: "uint256",
+        name: "tokenId",
+        type: "uint256",
+      },
+    ],
+    name: "Approval",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: "address",
+        name: "owner",
+        type: "address",
+      },
+      {
+        indexed: true,
+        internalType: "address",
+        name: "operator",
+        type: "address",
+      },
+      { indexed: false, internalType: "bool", name: "approved", type: "bool" },
+    ],
+    name: "ApprovalForAll",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: "address",
+        name: "previousOwner",
+        type: "address",
+      },
+      {
+        indexed: true,
+        internalType: "address",
+        name: "newOwner",
+        type: "address",
+      },
+    ],
+    name: "OwnershipTransferred",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      { indexed: true, internalType: "address", name: "from", type: "address" },
+      { indexed: true, internalType: "address", name: "to", type: "address" },
+      {
+        indexed: true,
+        internalType: "uint256",
+        name: "tokenId",
+        type: "uint256",
+      },
+    ],
+    name: "Transfer",
+    type: "event",
+  },
+  {
+    inputs: [],
+    name: "MINT_PRICE",
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      { internalType: "address", name: "to", type: "address" },
+      { internalType: "uint256", name: "tokenId", type: "uint256" },
+    ],
+    name: "approve",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "address", name: "owner", type: "address" }],
+    name: "balanceOf",
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "uint256", name: "tokenId", type: "uint256" }],
+    name: "getApproved",
+    outputs: [{ internalType: "address", name: "", type: "address" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      { internalType: "address", name: "owner", type: "address" },
+      { internalType: "address", name: "operator", type: "address" },
+    ],
+    name: "isApprovedForAll",
+    outputs: [{ internalType: "bool", name: "", type: "bool" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "name",
+    outputs: [{ internalType: "string", name: "", type: "string" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "owner",
+    outputs: [{ internalType: "address", name: "", type: "address" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "uint256", name: "tokenId", type: "uint256" }],
+    name: "ownerOf",
+    outputs: [{ internalType: "address", name: "", type: "address" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "renounceOwnership",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "address", name: "to", type: "address" }],
+    name: "safeMint",
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    stateMutability: "payable",
+    type: "function",
+  },
+  {
+    inputs: [
+      { internalType: "address", name: "from", type: "address" },
+      { internalType: "address", name: "to", type: "address" },
+      { internalType: "uint256", name: "tokenId", type: "uint256" },
+    ],
+    name: "safeTransferFrom",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      { internalType: "address", name: "from", type: "address" },
+      { internalType: "address", name: "to", type: "address" },
+      { internalType: "uint256", name: "tokenId", type: "uint256" },
+      { internalType: "bytes", name: "data", type: "bytes" },
+    ],
+    name: "safeTransferFrom",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      { internalType: "address", name: "operator", type: "address" },
+      { internalType: "bool", name: "approved", type: "bool" },
+    ],
+    name: "setApprovalForAll",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "bytes4", name: "interfaceId", type: "bytes4" }],
+    name: "supportsInterface",
+    outputs: [{ internalType: "bool", name: "", type: "bool" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "symbol",
+    outputs: [{ internalType: "string", name: "", type: "string" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "uint256", name: "index", type: "uint256" }],
+    name: "tokenByIndex",
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      { internalType: "address", name: "owner", type: "address" },
+      { internalType: "uint256", name: "index", type: "uint256" },
+    ],
+    name: "tokenOfOwnerByIndex",
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "uint256", name: "tokenId", type: "uint256" }],
+    name: "tokenURI",
+    outputs: [{ internalType: "string", name: "", type: "string" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "totalSupply",
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      { internalType: "address", name: "from", type: "address" },
+      { internalType: "address", name: "to", type: "address" },
+      { internalType: "uint256", name: "tokenId", type: "uint256" },
+    ],
+    name: "transferFrom",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "address", name: "newOwner", type: "address" }],
+    name: "transferOwnership",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "withdraw",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+];
+
 const contractAddress = "0xC86C622C57c40c866D40D07B16109B459Cd72b05"; // Replace with your contract address
+const contractAddressNFT = "0xb27A31f1b0AF2946B7F582768f03239b1eC07c2c";
 
 export default function ContractInteraction(props) {
   const [web3, setWeb3] = useState(null);
   const [contractInstance, setContractInstance] = useState(null);
+  const [nftContractInstance, setNftContractInstance] = useState(null);
 
+  const [tokenID, setTokenID] = useState(null);
   const [materialStock, setMaterialStock] = useState([]);
   const [certifiedProducts, setCertifiedProducts] = useState([]);
   useEffect(() => {
     initialize();
+    setTimeout(() => {}, 4000);
     console.log("useEffect");
   }, []);
 
@@ -253,6 +591,13 @@ export default function ContractInteraction(props) {
           contractAddress
         );
         setContractInstance(contractInstance);
+
+        const nftContractInstance = new web3.eth.Contract(
+          contractABINFT,
+          contractAddressNFT
+        );
+
+        setNftContractInstance(nftContractInstance);
       } else if (window.web3) {
         // Legacy dapp browsers
         const web3 = new Web3(window.web3.currentProvider);
@@ -262,6 +607,16 @@ export default function ContractInteraction(props) {
           contractAddress
         );
         setContractInstance(contractInstance);
+
+        const nftContractInstance = new web3.eth.Contract(
+          contractABINFT,
+          contractAddressNFT
+        );
+
+        setNftContractInstance(nftContractInstance);
+
+        getAllMaterialStocks();
+        getCertifiedProducts();
       } else {
         console.log(
           "No web3 detected. Please install MetaMask or use a Web3-enabled browser."
@@ -271,15 +626,57 @@ export default function ContractInteraction(props) {
       console.error("Error initializing Web3:", error);
     }
   };
+
+  const getOrderCertificate = () => {
+    try {
+      nftContractInstance._methods
+        .safeMint()
+        .call()
+        .then((result) => {
+          setTokenID(result);
+        });
+    } catch (error) {
+      //   alert("Please Initialize first! getOrderCertificate");
+      console.error("Error calling getOrderCertificate:", error);
+    }
+  };
+
+  const verifyUser = async () => {
+    try {
+      const isValid = nftContractInstance._methods
+        .ownerOf(tokenID)
+        .call()
+        .then((result) => {
+          return true;
+          console.log(result);
+        })
+        .catch((error) => {
+          return false;
+        });
+      return isValid;
+    } catch (error) {
+      return false;
+      //   alert("Please Initialize first! getOrderCertificate");
+      console.error("Error calling getOrderCertificate:", error);
+    }
+  };
+
   const getAllMaterialStocks = async () => {
     try {
-      const result = await contractInstance._methods
-        .getAllMaterialStocks()
-        .call();
-      console.log(result);
+      const isValid = true; //verifyUser();
+      if (isValid) {
+        const result = await contractInstance._methods
+          .getAllMaterialStocks()
+          .call();
+        console.log(result);
 
-      setMaterialStock(result);
+        setMaterialStock(result);
+      } else {
+        alert("You are not authorized to access this information");
+      }
     } catch (error) {
+      alert("You are not authorized to access this information");
+
       //   alert("Please Initialize first! getAllMaterialStocks");
       initialize();
       console.error("Error calling getAllMaterialStocks:", error);
@@ -288,12 +685,18 @@ export default function ContractInteraction(props) {
 
   const getCertifiedProducts = async () => {
     try {
-      const result = await contractInstance._methods
-        .getAllCertifiedProductCounts()
-        .call();
-      console.log(result);
-      setCertifiedProducts(result);
+      const isValid = true; //verifyUser();
+      if (isValid) {
+        const result = await contractInstance._methods
+          .getAllCertifiedProductCounts()
+          .call();
+        console.log(result);
+        setCertifiedProducts(result);
+      } else {
+        alert("You are not authorized to access this information");
+      }
     } catch (error) {
+      alert("You are not authorized to access this information");
       initialize();
 
       //   alert("Please Initialize first! getCertifiedProducts");
@@ -303,11 +706,17 @@ export default function ContractInteraction(props) {
 
   const simulateConsumption = async (index) => {
     try {
-      await contractInstance._methods
-        .simulateConsumption(index, counts[index])
-        .send({ from: props.fromAddress });
-      console.log("Value set successfully!");
+      const isValid = true; //verifyUser();
+      if (isValid) {
+        await contractInstance._methods
+          .simulateConsumption(index, counts[index])
+          .send({ from: props.fromAddress });
+        console.log("Value set successfully!");
+      } else {
+        alert("You are not authorized to access this information");
+      }
     } catch (error) {
+      alert("You are not authorized to access this information");
       initialize();
       //   alert("Please Initialize first! simulateConsumption");
       console.error("Error calling simulateConsumption:", error);
@@ -343,36 +752,63 @@ export default function ContractInteraction(props) {
     <div>
       <header>
         <h1>Simulate Production of Products</h1>
-        {/* <button className="button" onClick={initialize}>
-          Initialize
-        </button> */}
+        <button className="button" onClick={getOrderCertificate}>
+          Get Your Ticket to Order
+        </button>
       </header>
 
       <div className="container">
-        {[1, 2, 3, 4].map((machine, index) => (
-          <div className="machine" key={index}>
-            <h2>Machine {machine}</h2>
-            <button className="button" onClick={() => handleDecrement(index)}>
-              -
-            </button>
-            <button
-              className="button count-button"
-              onClick={() => simulateConsumption(index)}
-            >
-              {counts[index]}
-            </button>
-            <button className="button" onClick={() => handleIncrement(index)}>
-              +
-            </button>
-            {/* <h3>Products: {certifiedProducts[index]}</h3> */}
+        {[
+          {
+            machineName: "Apple mix",
+            products: ["Pineapple", "Bananna", "Apple"],
+          },
+          {
+            machineName: "Good Morning Sunrise Mix",
+            products: ["Pineapple", "Apple", "Orange"],
+          },
+          {
+            machineName: "Tropical mix",
+            products: ["Pineapple", "Orange", "Bananna"],
+          },
+          {
+            machineName: "Classic Mix",
+            products: ["Bananna", "Apple", "Orange"],
+          },
+        ].map((machine, index) => (
+          <div>
+            <div className="machine" key={index}>
+              <h2>Machine {machine.machineName}</h2>
+              <button className="button" onClick={() => handleDecrement(index)}>
+                -
+              </button>
+              <button
+                className="button count-button"
+                onClick={() => simulateConsumption(index)}
+              >
+                {counts[index]}
+              </button>
+              <button className="button" onClick={() => handleIncrement(index)}>
+                +
+              </button>
+              {/* <h3>Products: {certifiedProducts[index]}</h3> */}
+            </div>
+            <div className="products">
+              <h4 style={{ margin: "10px" }}>Products</h4>
+              {machine.products.map((product, index) => (
+                <div className="product" key={index}>
+                  {product}
+                </div>
+              ))}
+            </div>
           </div>
         ))}
       </div>
       <div className="stockAndProductContent">
         <div className="stock-section">
-          <h2>Stock of Materials</h2>
+          <h2>History of used Materials</h2>
           <button className="button" onClick={getAllMaterialStocks}>
-            Get Material Stock
+            Get Material History
           </button>
           <div id="stock" className="stock">
             <VerticalBarChart data={materialStock}></VerticalBarChart>
@@ -380,17 +816,35 @@ export default function ContractInteraction(props) {
         </div>
 
         <div className="statistics-section">
-          <h2>History of Production</h2>
+          <h2>History of produced Products</h2>
           <button className="button" onClick={getCertifiedProducts}>
-            Get History
+            Get Products History
           </button>
           <div id="statistics" className="statistics">
-            {[1, 2, 3, 4, 5].map((machine, index) => (
+            {[
+              {
+                machineName: "Apple mix",
+                products: ["Pineapple", "Bananna", "Apple"],
+              },
+              {
+                machineName: "Good Morning Sunrise Mix",
+                products: ["Pineapple", "Apple", "Orange"],
+              },
+              {
+                machineName: "Tropical mix",
+                products: ["Pineapple", "Orange", "Bananna"],
+              },
+              {
+                machineName: "Classic Mix",
+                products: ["Bananna", "Apple", "Orange"],
+              },
+              { machineName: 5 },
+            ].map((machine, index) => (
               <div className="machineStat" key={index}>
                 <h2 style={{ width: 300 }}>
-                  {machine === 5
+                  {machine.machineName === 5
                     ? `Total Production Count`
-                    : `Machine ${machine}`}
+                    : `Machine ${index + 1} (${machine.machineName})`}
                 </h2>
                 <button
                   style={{ width: 300, cursor: "default" }}
