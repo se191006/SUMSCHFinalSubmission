@@ -562,7 +562,7 @@ const contractABINFT = [
 ];
 
 const contractAddress = "0xC86C622C57c40c866D40D07B16109B459Cd72b05"; // Replace with your contract address
-const contractAddressNFT = "0xb27A31f1b0AF2946B7F582768f03239b1eC07c2c";
+const contractAddressNFT = "0x384637D2c1Ad5E380116AEe33C51BC441d08Abb3";
 
 export default function ContractInteraction(props) {
   const [web3, setWeb3] = useState(null);
@@ -630,20 +630,22 @@ export default function ContractInteraction(props) {
   const getOrderCertificate = () => {
     try {
       nftContractInstance._methods
-        .safeMint()
-        .call()
+        .safeMint("0xc0318fdB92C0fcc6cC2243F8747b5398B94abef3")
+        .send({
+          value: 1,
+          from: "0x4dB55BAB20CFAa60abF9D6e84F66FE3EFb2Ed286",
+        })
         .then((result) => {
           setTokenID(result);
         });
     } catch (error) {
-      //   alert("Please Initialize first! getOrderCertificate");
       console.error("Error calling getOrderCertificate:", error);
     }
   };
 
   const verifyUser = async () => {
     try {
-      const isValid = nftContractInstance._methods
+      const isValid = await nftContractInstance._methods
         .ownerOf(tokenID)
         .call()
         .then((result) => {
@@ -663,7 +665,7 @@ export default function ContractInteraction(props) {
 
   const getAllMaterialStocks = async () => {
     try {
-      const isValid = true; //verifyUser();
+      const isValid = verifyUser();
       if (isValid) {
         const result = await contractInstance._methods
           .getAllMaterialStocks()
@@ -685,7 +687,7 @@ export default function ContractInteraction(props) {
 
   const getCertifiedProducts = async () => {
     try {
-      const isValid = true; //verifyUser();
+      const isValid = verifyUser();
       if (isValid) {
         const result = await contractInstance._methods
           .getAllCertifiedProductCounts()
@@ -706,7 +708,7 @@ export default function ContractInteraction(props) {
 
   const simulateConsumption = async (index) => {
     try {
-      const isValid = true; //verifyUser();
+      const isValid = verifyUser();
       if (isValid) {
         await contractInstance._methods
           .simulateConsumption(index, counts[index])
@@ -716,7 +718,7 @@ export default function ContractInteraction(props) {
         alert("You are not authorized to access this information");
       }
     } catch (error) {
-      alert("You are not authorized to access this information");
+      // alert("You are not authorized to access this information");
       initialize();
       //   alert("Please Initialize first! simulateConsumption");
       console.error("Error calling simulateConsumption:", error);
